@@ -1,4 +1,5 @@
 import React from "react";
+import "./CategoryAndBrand.css";
 
 type CategoryAndBrandProps = {};
 
@@ -39,6 +40,7 @@ const CategoryAndBrand = (props: CategoryAndBrandProps) => {
                 display: "flex",
             }}>
             <div
+                className={"asdf"}
                 style={{
                     width: 134,
                     height: 601,

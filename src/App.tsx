@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Layout, Menu, theme } from "antd";
+import { ConfigProvider, Layout, Menu, theme } from "antd";
 import Logo from "./components/Logo";
 import Dashboard from "./components/Dashboard";
 import { Route, Routes, useNavigate } from "react-router-dom";
@@ -10,8 +10,6 @@ import Bill from "./components/Bill";
 import Tom from "./components/Tom";
 import Alex from "./components/Alex";
 import ResistItemCard from "./prototype/ResistItemCard";
-
-const { Header, Sider } = Layout;
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -34,6 +32,7 @@ const items: MenuItem[] = [
 
 const App = () => {
     const [collapsed, setCollapsed] = useState(false);
+
     const navigate = useNavigate();
     const { token } = theme.useToken();
 
@@ -41,16 +40,16 @@ const App = () => {
 
     return (
         <Layout>
-            <Header
+            <Layout.Header
                 style={{
                     padding: 0,
                     background: token.colorBgContainer,
                     borderBottom: `2px solid ${token.colorBgLayout}`,
                 }}>
                 <Logo />
-            </Header>
+            </Layout.Header>
             <Layout className="site-layout" hasSider style={{ minHeight: "100vh" }}>
-                <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+                <Layout.Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
                     <div
                         style={{
                             height: 3,
@@ -66,7 +65,7 @@ const App = () => {
                             navigate(key);
                         }}
                     />
-                </Sider>
+                </Layout.Sider>
                 <Routes>
                     <Route path={"/"} element={<Global />}></Route>
                     <Route path={"/dashboard"} element={<Dashboard />}></Route>
